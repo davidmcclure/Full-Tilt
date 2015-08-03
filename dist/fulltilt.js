@@ -14,12 +14,20 @@
  *
  */
 
-(function ( window ) {
-
-// Only initialize the FULLTILT API if it is not already attached to the DOM
-if ( window.FULLTILT !== undefined && window.FULLTILT !== null ) {
-	return;
-}
+(function (root, factory) {
+    if (typeof define === 'function' && define.amd) {
+        // AMD. Register as an anonymous module.
+        define(['exports'], function (exports) {
+            factory((root.commonJsStrictGlobal = exports), b);
+        });
+    } else if (typeof exports === 'object' && typeof exports.nodeName !== 'string') {
+        // CommonJS
+        factory(exports);
+    } else {
+        // Browser globals
+        factory((root.commonJsStrictGlobal = {}));
+    }
+}(this, function (exports) {
 
 var M_PI   = Math.PI;
 var M_PI_2 = M_PI / 2;
@@ -53,6 +61,7 @@ var SCREEN_ROTATION_0        = 0,
     SCREEN_ROTATION_180      = M_PI,
     SCREEN_ROTATION_270      = M_2_PI / 3,
     SCREEN_ROTATION_MINUS_90 = - M_PI_2;
+
 
 // Math.sign polyfill
 function sign(x) {
@@ -1376,8 +1385,8 @@ FULLTILT.DeviceMotion.prototype = {
 };
 
 
-////// Attach FULLTILT to root DOM element //////
+////// Export FULLTILT (attach to window in browser). //////
 
-window.FULLTILT = FULLTILT;
+exports.FULLTILT = FULLTILT;
 
-})( window );
+}));
