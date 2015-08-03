@@ -1,5 +1,5 @@
-////// Attach FULLTILT to root DOM element //////
+////// Export FULLTILT (attach to window in browser). //////
 
-window.FULLTILT = FULLTILT;
+exports.FULLTILT = FULLTILT;
 
-})( window );
+}));

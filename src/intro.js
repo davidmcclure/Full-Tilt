@@ -14,12 +14,20 @@
  *
  */
 
-(function ( window ) {
-
-// Only initialize the FULLTILT API if it is not already attached to the DOM
-if ( window.FULLTILT !== undefined && window.FULLTILT !== null ) {
-	return;
-}
+(function (root, factory) {
+    if (typeof define === 'function' && define.amd) {
+        // AMD. Register as an anonymous module.
+        define(['exports'], function (exports) {
+            factory((root.commonJsStrictGlobal = exports), b);
+        });
+    } else if (typeof exports === 'object' && typeof exports.nodeName !== 'string') {
+        // CommonJS
+        factory(exports);
+    } else {
+        // Browser globals
+        factory((root.commonJsStrictGlobal = {}));
+    }
+}(this, function (exports) {
 
 var M_PI   = Math.PI;
 var M_PI_2 = M_PI / 2;
