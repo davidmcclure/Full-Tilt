@@ -33,6 +33,7 @@
       "url": "https://github.com/richtr/Full-Tilt/blob/master/LICENSE.txt"
     }
   ],
+	"main": "dist/fulltilt.js",
   "dependencies": {},
   "devDependencies": {
     "grunt": "~0.4.5",
