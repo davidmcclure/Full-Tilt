@@ -17,17 +17,19 @@
 (function (root, factory) {
     if (typeof define === 'function' && define.amd) {
         // AMD. Register as an anonymous module.
-        define(['exports'], function (exports) {
-            factory((root.commonJsStrictGlobal = exports), b);
+        define([], function () {
+            return (root.returnExportsGlobal = factory());
         });
-    } else if (typeof exports === 'object' && typeof exports.nodeName !== 'string') {
-        // CommonJS
-        factory(exports);
+    } else if (typeof module === 'object' && module.exports) {
+        // Node. Does not work with strict CommonJS, but
+        // only CommonJS-like enviroments that support module.exports,
+        // like Node.
+        module.exports = factory();
     } else {
         // Browser globals
-        factory((root.commonJsStrictGlobal = {}));
+        root.returnExportsGlobal = factory();
     }
-}(this, function (exports) {
+}(this, function () {
 
 var M_PI   = Math.PI;
 var M_PI_2 = M_PI / 2;
@@ -1387,6 +1389,6 @@ FULLTILT.DeviceMotion.prototype = {
 
 ////// Export FULLTILT (attach to window in browser). //////
 
-exports.FULLTILT = FULLTILT;
+return FULLTILT;
 
 }));
