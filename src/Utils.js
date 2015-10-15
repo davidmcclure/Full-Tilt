@@ -16,7 +16,7 @@ function SensorCheck(sensorRootObj) {
 
 			setTimeout(function() {
 
-				if (sensorRootObj && sensorRootObj.data) {
+				if (sensorRootObj && sensorRootObj.data && sensorRootObj.data.alpha) {
 
 					resolve();
 
